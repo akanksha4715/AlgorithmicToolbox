@@ -22,14 +22,14 @@ long long get_majority_element(vector<long long> &a, long long lo, long long hi)
   right = get_majority_element(a, mid + 1, hi);
   if (left == right)
   {
-    return a[left];
+    return left;
   }
   else
   {
     long long lcount, rcount;
 
-    lcount = get_count(a, left, 0, a.size() - 1);
-    rcount = get_count(a, right, 0, a.size() - 1);
+    lcount = get_count(a, left, lo,hi);
+    rcount = get_count(a, right, lo,hi);
     return lcount > rcount ? left : right;
   }
 }
