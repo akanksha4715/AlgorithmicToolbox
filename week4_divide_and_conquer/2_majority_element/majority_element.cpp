@@ -4,7 +4,7 @@ using namespace std;
 long long get_count(vector<long long> &a, long long c, long long lo, long long hi)
 {
   long long count = 0;
-  for (size_t i = lo; i < hi; i++)
+  for (size_t i = lo; i <= hi; i++)
   {
     if (a[i] == c)
       count++;
@@ -28,8 +28,8 @@ long long get_majority_element(vector<long long> &a, long long lo, long long hi)
   {
     long long lcount, rcount;
 
-    lcount = get_count(a, left, lo, hi);
-    rcount = get_count(a, right, lo, hi);
+    lcount = get_count(a, left, 0, a.size() - 1);
+    rcount = get_count(a, right, 0, a.size() - 1);
     return lcount > rcount ? left : right;
   }
 }
@@ -46,7 +46,7 @@ int main()
     a.push_back(l);
   }
   long long elem = get_majority_element(a, 0, a.size() - 1);
-  long long count = get_count(a, elem, 0, n);
+  long long count = get_count(a, elem, 0, a.size() - 1);
   if (count > n / 2)
     cout << 1;
   else
